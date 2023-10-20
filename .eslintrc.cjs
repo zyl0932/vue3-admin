@@ -26,6 +26,7 @@ module.exports = {
     "rules": {
         // 我们自定义的规则写在这里
         "prettier/prettier": [
+            "error",
             {
                 singleQuote: false, // 使用单引号
                 semi: false, // 末尾添加分号

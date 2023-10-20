@@ -2,7 +2,6 @@
   "name": "vue3-admin-front",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -11,11 +10,15 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "element-plus": "^2.4.1",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
     "@commitlint/config-conventional": "^17.8.0",
+    "@types/node": "^20.8.7",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "@vitejs/plugin-vue": "^4.2.3",
