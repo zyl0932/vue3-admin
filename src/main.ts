@@ -8,8 +8,13 @@ import "element-plus/dist/index.css"
 import "normalize.css/normalize.css"
 // 全局css
 import "@/styles/index.scss"
+// 引入icon插件
+import initSvgIcon from "@/icons/index";
+import "virtual:svg-icons-register"
 const app = createApp(App)
-app.use(ElementPlus)
-app.use(router)
 app.use(createPinia())
+app.use(router)
+app.use(ElementPlus)
+// 使用icon组件
+app.use(initSvgIcon)
 app.mount("#app")

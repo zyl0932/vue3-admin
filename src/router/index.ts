@@ -6,18 +6,18 @@ const routes: Array<RouteRecordRaw> = [
     component: Layout,
     redirect: "/dashboard",
     children: [
-    {
-      path: "dashboard",
-      name: "Dashboard0",
-      component: () => 
-        import(
-          /* webpackChunkName: "dashboard" */
-          "@/views/dashboard/index.vue"
-        ),
-      meta: {
-        title: "Dashboard" // 需要配置声明文件否则无提示
+      {
+        path: "dashboard",
+        name: "Dashboard0",
+        component: () =>
+          import(
+            /* webpackChunkName: "dashboard" */
+            "@/views/dashboard/index.vue"
+          ),
+        meta: {
+          title: "Dashboard" // 需要配置声明文件否则无提示
+        }
       }
-    }
     ]
   }
 ]
