@@ -7,8 +7,7 @@
         <div class="tags-view">tagsview</div>
       </div>
       <div class="app-main">
-        <h2>app main</h2>
-        <router-view></router-view>
+       <app-main />
       </div>
     </div>
   </div>
@@ -22,6 +21,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     .header {
       background: cyan;
       .navbar {

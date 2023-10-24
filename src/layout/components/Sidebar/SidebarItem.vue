@@ -1,15 +1,19 @@
 <template>
   <div class="sidebar-item-container" v-if="!item.meta || !item.meta.hidden">
     <!-- 如果有一个孩子，或者没孩子，或者有一个孩子但是被hidden了 -->
-    <template v-if="theOnlyOneChildRoute && (!theOnlyOneChildRoute.children || theOnlyOneChildRoute.noShowingChildren)">
+    <template
+      v-if="
+        theOnlyOneChildRoute &&
+        (!theOnlyOneChildRoute.children ||
+          theOnlyOneChildRoute.noShowingChildren)
+      "
+    >
       <!-- 如果有没有meta属性以为着不必渲染了 -->
       <sidebar-item-link
         :to="resolvePath(theOnlyOneChildRoute.path)"
         v-if="theOnlyOneChildRoute.meta"
       >
-        <el-menu-item
-          :index="resolvePath(theOnlyOneChildRoute.path)"
-        >
+        <el-menu-item :index="resolvePath(theOnlyOneChildRoute.path)">
           <el-icon v-if="icon">
             <svg-icon class="menu-icon" :icon-class="icon"></svg-icon>
           </el-icon>
@@ -69,7 +73,9 @@ const showingChildNumber = computed(() => {
 // 需要渲染的单个路由 如果该路由只有一个子路由 默认直接渲染这个子路由
 // theOnlyOneChildRoute直接通过el-menu-item组件来渲染
 const { item } = toRefs(props)
-const theOnlyOneChildRoute = computed<(RouteRecordRaw & { noShowingChildren?: boolean }) | null>(() => {
+const theOnlyOneChildRoute = computed<
+  (RouteRecordRaw & { noShowingChildren?: boolean }) | null
+>(() => {
   // 多个children时 直接return null 多children需要用el-submenu来渲染并递归
   if (showingChildNumber.value > 1) {
     return null
