@@ -28,7 +28,13 @@ import SidebarItem from "./SidebarItem.vue"
 const route = useRoute()
 // 根据路由路径 对应  当前激活的菜单 页面刷新后 激活当前路由匹配的菜单
 const activeMenu = computed(() => {
-  return route.path
+  const { path, meta} = route;
+  console.log(path, meta)
+  if (meta.activeMenu) {
+    return meta.activeMenu;
+  }
+  console.log(meta.activeMenu)
+  return path
 })
 // 渲染路由
 const menuRoutes = computed(() => routes)

@@ -19,7 +19,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: "Documentation",
           icon: "documentation",
-          hidden: true
+          // 默认加载Guide, /documentation/index高亮显示
         }
       }
     ]
@@ -30,13 +30,15 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     redirect: "/guide/index",
     children: [
       {
-        path: "guide",
+        path: "index",
         name: "Guide",
         component: () =>
           import(/* webpackChunkName: "guide" */ "@/views/guide/index.vue"),
         meta: {
           title: "Guide",
-          icon: "guide"
+          icon: "guide",
+          // 默认加载Guide时，/documentation/index高亮显示
+          activeMenu: "/documentation/index"
         }
       }
     ]
@@ -47,7 +49,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     redirect: "/system/user",
     meta: {
       title: "System",
-      icon: "lock"
+      icon: "lock",
+      alwaysShow: true
     },
     children: [
       {
@@ -58,22 +61,22 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
           title: "Menu Management"
         }
       },
-      {
-        path: "role",
-        component: () =>
-          import(/* webpackChunkName: "menu" */ "@/views/system/role.vue"),
-        meta: {
-          title: "Role Management"
-        }
-      },
-      {
-        path: "user",
-        component: () =>
-          import(/* webpackChunkName: "menu" */ "@/views/system/user.vue"),
-        meta: {
-          title: "User Management"
-        }
-      }
+      // {
+      //   path: "role",
+      //   component: () =>
+      //     import(/* webpackChunkName: "menu" */ "@/views/system/role.vue"),
+      //   meta: {
+      //     title: "Role Management"
+      //   }
+      // },
+      // {
+      //   path: "user",
+      //   component: () =>
+      //     import(/* webpackChunkName: "menu" */ "@/views/system/user.vue"),
+      //   meta: {
+      //     title: "User Management"
+      //   }
+      // }
     ]
   },
   {

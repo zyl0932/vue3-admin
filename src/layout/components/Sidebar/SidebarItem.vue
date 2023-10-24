@@ -3,9 +3,10 @@
     <!-- 如果有一个孩子，或者没孩子，或者有一个孩子但是被hidden了 -->
     <template
       v-if="
-        theOnlyOneChildRoute &&
-        (!theOnlyOneChildRoute.children ||
-          theOnlyOneChildRoute.noShowingChildren)
+      !alwaysShowRootMenu &&
+      theOnlyOneChildRoute &&
+      (!theOnlyOneChildRoute.children ||
+        theOnlyOneChildRoute.noShowingChildren)
       "
     >
       <!-- 如果有没有meta属性以为着不必渲染了 -->
@@ -118,4 +119,5 @@ const resolvePath = (childPath: string) => {
   }
   return path.resolve(props.basePath, childPath)
 }
+const alwaysShowRootMenu = computed(() => props.item.meta && props.item.meta.alwaysShow)
 </script>
