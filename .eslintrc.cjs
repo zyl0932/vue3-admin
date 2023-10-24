@@ -11,7 +11,7 @@ module.exports = {
         "plugin:@typescript-eslint/recommended", // typescript 规则
         "plugin:vue/vue3-essential",
         "@vue/prettier",
-        "./eslint-auto-import.json"
+        "./.eslintrc-auto-import.json"
     ],
     "overrides": [],
     "parser": "vue-eslint-parser", // 解析.vue文件

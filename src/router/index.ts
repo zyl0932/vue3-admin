@@ -11,15 +11,17 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
       {
         path: "index",
         name: "Documentation",
-        component: () => 
-          import(/* webpackChunkName: "documentation" */
-          "@/views/documentation/index.vue"),
+        component: () =>
+          import(
+            /* webpackChunkName: "documentation" */
+            "@/views/documentation/index.vue"
+          ),
         meta: {
           title: "Documentation",
           icon: "documentation"
         }
       }
-    ],
+    ]
   },
   {
     path: "/guide",
@@ -29,9 +31,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
       {
         path: "guide",
         name: "Guide",
-        component: () => 
-          import(/* webpackChunkName: "guide" */
-          "@/views/guide/index.vue"),
+        component: () =>
+          import(/* webpackChunkName: "guide" */ "@/views/guide/index.vue"),
         meta: {
           title: "Guide",
           icon: "guide"
@@ -50,32 +51,26 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "menu",
-        component: () => 
-          import(/* webpackChunkName: "menu" */
-          "@/views/system/menu.vue"),
+        component: () =>
+          import(/* webpackChunkName: "menu" */ "@/views/system/menu.vue"),
         meta: {
           title: "Menu Management",
-          icon: "list"
         }
       },
       {
         path: "role",
-        component: () => 
-          import(/* webpackChunkName: "menu" */
-          "@/views/system/role.vue"),
+        component: () =>
+          import(/* webpackChunkName: "menu" */ "@/views/system/role.vue"),
         meta: {
           title: "Role Management",
-          icon: "list"
         }
       },
       {
         path: "user",
-        component: () => 
-          import(/* webpackChunkName: "menu" */
-          "@/views/system/user.vue"),
+        component: () =>
+          import(/* webpackChunkName: "menu" */ "@/views/system/user.vue"),
         meta: {
           title: "User Management",
-          icon: "list"
         }
       }
     ]
@@ -89,20 +84,21 @@ const constantRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "dashboard",
-        name: "Dashboard0",
+        name: "Dashboard",
         component: () =>
           import(
             /* webpackChunkName: "dashboard" */
             "@/views/dashboard/index.vue"
           ),
         meta: {
-          title: "Dashboard" // 需要配置声明文件否则无提示
+          title: "Dashboard", // 需要配置声明文件否则无提示
+          icon: "dashboard"
         }
       }
     ]
   }
 ]
-export const routes = [ ...constantRoutes, ...asyncRoutes];
+export const routes = [...constantRoutes, ...asyncRoutes]
 export default createRouter({
   history: createWebHistory(),
   routes

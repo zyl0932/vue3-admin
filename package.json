@@ -11,8 +11,10 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.config.js"
   },
   "dependencies": {
+    "@types/path-browserify": "^1.0.1",
     "element-plus": "^2.4.1",
     "normalize.css": "^8.0.1",
+    "path-browserify": "^1.0.1",
     "pinia": "^2.1.7",
     "unplugin-element-plus": "^0.8.0",
     "vue": "^3.3.4",

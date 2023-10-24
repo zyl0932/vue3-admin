@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const { proxy } = getCurrentInstance()!;
+const { proxy } = getCurrentInstance()!
 const sayHi = () => {
   proxy.$message.success("恭喜你，这是一条成功的消息")
 }
