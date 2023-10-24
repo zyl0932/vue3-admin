@@ -11,8 +11,9 @@
   </div>
 </template>
 <script setup lang="ts">
+const { proxy } = getCurrentInstance()!;
 const sayHi = () => {
-  alert("hi svg")
+  proxy.$message.success("恭喜你，这是一条成功的消息")
 }
 </script>
 <style lang="scss">

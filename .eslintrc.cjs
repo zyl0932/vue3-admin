@@ -10,7 +10,8 @@ module.exports = {
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended", // typescript 规则
         "plugin:vue/vue3-essential",
-        "@vue/prettier"
+        "@vue/prettier",
+        "./eslint-auto-import.json"
     ],
     "overrides": [],
     "parser": "vue-eslint-parser", // 解析.vue文件
@@ -36,6 +37,7 @@ module.exports = {
                 useTabs: false,
                 endOfLine: "auto"
             }
-        ]
+        ],
+        "@typescript-eslint/no-non-null-assertion": "off"
     }
 }
