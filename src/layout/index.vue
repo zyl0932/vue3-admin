@@ -3,7 +3,7 @@
     <div class="sidebar-container"><sidebar></sidebar></div>
     <div class="main-container">
       <div class="header">
-        <div class="navbar">navbar</div>
+        <div class="navbar"><navbar></navbar></div>
         <div class="tags-view">tagsview</div>
       </div>
       <div class="app-main">

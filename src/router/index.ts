@@ -18,7 +18,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
           ),
         meta: {
           title: "Documentation",
-          icon: "documentation",
+          icon: "documentation"
           // 默认加载Guide, /documentation/index高亮显示
         }
       }
@@ -60,7 +60,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: "Menu Management"
         }
-      },
+      }
       // {
       //   path: "role",
       //   component: () =>
