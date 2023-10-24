@@ -54,7 +54,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "menu" */ "@/views/system/menu.vue"),
         meta: {
-          title: "Menu Management",
+          title: "Menu Management"
         }
       },
       {
@@ -62,7 +62,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "menu" */ "@/views/system/role.vue"),
         meta: {
-          title: "Role Management",
+          title: "Role Management"
         }
       },
       {
@@ -70,11 +70,25 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "menu" */ "@/views/system/user.vue"),
         meta: {
-          title: "User Management",
+          title: "User Management"
         }
       }
     ]
-  }
+  },
+  {
+    // 外链路由
+    path: "/external-link",
+    component: Layout,
+  children: [
+    {
+      path: "http://www.zhufengpeixun.com/",
+      redirect: "/",
+      meta: {
+        title: "External Link",
+        icon: "link"
+      }
+    }
+  ]  }
 ]
 const constantRoutes: Array<RouteRecordRaw> = [
   {

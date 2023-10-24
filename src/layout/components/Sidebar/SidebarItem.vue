@@ -1,11 +1,11 @@
 <template>
-  <div class="sidebar-item-container" 
-    v-if="!item.meta || !item.meta.hidden">
+  <div class="sidebar-item-container" v-if="!item.meta || !item.meta.hidden">
     <!-- 如果有一个孩子，或者没孩子，或者有一个孩子但是被hidden了 -->
     <template v-if="theOnlyOneChildRoute">
       <!-- 如果有没有meta属性以为着不必渲染了 -->
-      <el-menu-item 
-        :index="resolvePath(theOnlyOneChildRoute.path)" 
+      <sidebar-item-link :to="resolvePath(theOnlyOneChildRoute.path)" v-if="theOnlyOneChildRoute.meta">
+        <el-menu-item
+        :index="resolvePath(theOnlyOneChildRoute.path)"
         v-if="theOnlyOneChildRoute.meta"
       >
         <el-icon v-if="icon">
@@ -14,7 +14,8 @@
         <template #title>
           <span>{{ theOnlyOneChildRoute.meta?.title }}</span>
         </template>
-      </el-menu-item>
+      </el-menu-item> 
+      </sidebar-item-link>
     </template>
     <!-- 多个子路由时 -->
     <el-sub-menu v-else :index="resolvePath(item.path)" popper-append-to-body>
@@ -38,6 +39,7 @@
 import type { PropType } from "vue"
 import type { RouteRecordRaw } from "vue-router"
 import path from "path-browserify"
+import { isExternal } from "@/utils/validate"
 const props = defineProps({
   item: {
     type: Object as PropType<RouteRecordRaw>,
@@ -56,10 +58,10 @@ const props = defineProps({
 const showingChildNumber = computed(() => {
   // hidden路由排除掉 只算可渲染子路由
   const children = (props.item.children || []).filter((child) => {
-    if (child.meta && child.meta.hidden) return false;
-    return true;
+    if (child.meta && child.meta.hidden) return false
+    return true
   })
-  return children.length;
+  return children.length
 })
 
 // 需要渲染的单个路由 如果该路由只有一个子路由 默认直接渲染这个子路由
@@ -68,7 +70,7 @@ const { item } = toRefs(props)
 const theOnlyOneChildRoute = computed(() => {
   // 多个children时 直接return null 多children需要用el-submenu来渲染并递归
   if (showingChildNumber.value > 1) {
-    return null;
+    return null
   }
 
   // 只有一个子路由 还要筛选路由meta里有无hidden属性，hidden：true则过滤出去 不用管
@@ -77,7 +79,7 @@ const theOnlyOneChildRoute = computed(() => {
   if (item.value.children) {
     for (const child of item.value.children) {
       if (!child.meta || !child.meta.hidden) {
-        return child;
+        return child
       }
     }
   }
@@ -94,13 +96,17 @@ const theOnlyOneChildRoute = computed(() => {
 const icon = computed(() => {
   // 子路由 如果没有icon就用父路由的
   return (
-    theOnlyOneChildRoute.value?.meta?.icon || (props.item.meta && props.item.meta.icon)
+    theOnlyOneChildRoute.value?.meta?.icon ||
+    (props.item.meta && props.item.meta.icon)
   )
 })
 
 // 利用path.resolve 根据父路径+子路径 解析成正确路径 子路径可能是相对的
 // resolvePath在模板中使用
 const resolvePath = (childPath: string) => {
+  if (isExternal(childPath)) {
+    return childPath;
+  }
   return path.resolve(props.basePath, childPath)
 }
 </script>

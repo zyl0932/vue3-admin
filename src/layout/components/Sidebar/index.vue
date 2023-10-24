@@ -16,7 +16,7 @@
       :key="route.path"
       :item="route"
       :base-path="route.path"
-      />
+    />
   </el-menu>
 </template>
 
