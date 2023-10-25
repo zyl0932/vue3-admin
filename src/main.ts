@@ -14,8 +14,8 @@ import "virtual:svg-icons-register"
 // 注册element-plus
 import installElementPlus from "./plugins/element"
 const app = createApp(App)
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedstate);
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(router)
 app.use(installElementPlus)
