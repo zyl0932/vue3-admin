@@ -8,7 +8,6 @@ import { useAppStore } from "@/stores/app"
 import { storeToRefs } from "pinia"
 const store = useAppStore();
 const { sidebar } = storeToRefs(store)
-console.log(sidebar)
 const toggleSidebar = () => {
   store.toggleSidebar()
 }
