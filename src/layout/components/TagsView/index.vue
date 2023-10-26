@@ -1,6 +1,7 @@
 <template>
   <div class="tags-view-container">
-    <div class="tags-view-wrapper">
+    <scroll-panel>
+      <div class="tags-view-wrapper">
       <!-- 一个个tag view就是router-link -->
       <router-link
         class="tags-view-item"
@@ -13,9 +14,11 @@
       >
         <span>{{ tag.meta.title }}</span>
         <el-icon class="icon-close" v-if="!isAffix(tag)">
-          <CloseBold @click.prevent.stop="closeSelectedTag(tag)" /> </el-icon
-      ></router-link>
+          <CloseBold @click.prevent.stop="closeSelectedTag(tag)" />
+        </el-icon>
+      </router-link>
     </div>
+    </scroll-panel>
   </div>
 </template>
 <script lang="ts" setup>
@@ -26,26 +29,26 @@ import { CloseBold } from "@element-plus/icons-vue"
 import path from "path-browserify"
 import { routes } from "@/router"
 const fillterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
-  let tags: RouteLocationNormalized[] = [];
+  let tags: RouteLocationNormalized[] = []
   routes.forEach((route) => {
     if (route.meta && route.meta.affix) {
       // 把路由路径解析成完整路径，路由可能是相对路径
-      const tagPath = path.resolve(basePath, route.path);
+      const tagPath = path.resolve(basePath, route.path)
       tags.push({
         name: route.name,
         path: tagPath,
         meta: { ...route.meta }
-      } as RouteLocationNormalized); 
+      } as RouteLocationNormalized)
     }
     // 深度优先遍历 了路由( 子路由路径可能相对于route.path父路由路径)
     if (route.children) {
-      const childTags = fillterAffixTags(route.children, route.path);
+      const childTags = fillterAffixTags(route.children, route.path)
       if (childTags.length) {
-        tags = [...tags, ...childTags];
+        tags = [...tags, ...childTags]
       }
     }
   })
-  return tags;
+  return tags
 }
 const store = useTagsView()
 const { visitedViews } = storeToRefs(store)
@@ -68,7 +71,7 @@ watch(
   }
 )
 const initTags = () => {
-  const affixTags = fillterAffixTags(routes);
+  const affixTags = fillterAffixTags(routes)
   for (const tag of affixTags) {
     if (tag.name) {
       store.addView(tag)
@@ -76,7 +79,7 @@ const initTags = () => {
   }
 }
 const isAffix = (tag: RouteLocationNormalized) => {
-  return tag.meta && tag.meta.affix;
+  return tag.meta && tag.meta.affix
 }
 onMounted(() => {
   initTags()
@@ -99,6 +102,7 @@ const closeSelectedTag = (view: RouteLocationNormalized) => {
   box-shadow:
     0 1px 3px 0 rgba(0, 0, 0, 0.12),
     0 0 3px 0 rgba(0, 0, 0, 0.04);
+  overflow: hidden;
   .tags-view-wrapper {
     .tags-view-item {
       display: inline-block;

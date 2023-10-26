@@ -2,7 +2,6 @@
   <el-config-provider :size="size" :locale="zhCn">
     <router-view></router-view>
   </el-config-provider>
-  <router-view></router-view>
 </template>
 <script setup lang="ts">
 import { storeToRefs } from "pinia"
