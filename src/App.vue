@@ -8,6 +8,6 @@
 import { storeToRefs } from "pinia"
 import { useAppStore } from "./stores/app"
 import zhCn from "element-plus/dist/locale/zh-cn.mjs"
-const store = useAppStore();
+const store = useAppStore()
 const { size } = storeToRefs(store)
 </script>

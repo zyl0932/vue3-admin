@@ -22,7 +22,7 @@ import { Size } from "@/plugins/element"
 import { useAppStore } from "@/stores/app"
 import { storeToRefs } from "pinia"
 const store = useAppStore()
-const { size } = storeToRefs(store);
+const { size } = storeToRefs(store)
 const { proxy } = getCurrentInstance()!
 const sizeOptions = ref([
   {

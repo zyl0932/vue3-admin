@@ -14,7 +14,7 @@ export const useAppStore = defineStore(
     const sidebar = computed(() => state.sidebar)
     const size = computed(() => state.size)
     const setSize = (size: Size) => {
-      state.size = size;
+      state.size = size
     }
     // actions
     const toggleSidebar = () => {

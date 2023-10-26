@@ -8,6 +8,7 @@
       <el-tooltip content="Global-Size" effect="dark" placement="bottom">
         <size-select class="right-menu-item hover-effect" />
       </el-tooltip>
+      <avatar />
     </div>
   </div>
 </template>
@@ -39,7 +40,7 @@ const toggleSidebar = () => {
         cursor: pointer;
         transition: background 0.3s;
         &:hover {
-          background: rgba(0, 0, 0, 0.025)
+          background: rgba(0, 0, 0, 0.025);
         }
       }
     }
