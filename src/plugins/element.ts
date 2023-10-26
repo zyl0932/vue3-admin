@@ -16,3 +16,4 @@ export default (app: App): void => {
   app.config.globalProperties.$alert = ElMessageBox.alert
   app.config.globalProperties.$prompt = ElMessageBox.prompt
 }
+export type Size = "default" | "large" | "small"
