@@ -2,7 +2,7 @@
   <div class="app-main">
     <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <keep-alive>
+        <keep-alive :include="includes">
           <component :is="Component" :key="route.path" />
         </keep-alive>
       </transition>
@@ -10,7 +10,12 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { useTagsView } from "@/stores/tagsView"
+import { storeToRefs } from "pinia"
 const route = useRoute()
+const store = useTagsView()
+const { cachedViews } = storeToRefs(store);
+const includes = computed(() => cachedViews.value as string[])
 </script>
 <style lang="scss" scoped>
 .app-main {

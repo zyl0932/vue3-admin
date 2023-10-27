@@ -11,8 +11,8 @@
     <br />
     <br />
     <br />
-    缓存测试<input type="text" />
     <el-button>按钮</el-button>
+    <input type="text" />
   </div>
 </template>
 <script setup lang="ts">
@@ -20,6 +20,7 @@ const { proxy } = getCurrentInstance()!
 const sayHi = () => {
   proxy?.$message.success("恭喜你，这是一条成功的消息")
 }
+defineOptions({ name: "Dashboard"})
 </script>
 <style lang="scss">
 .custom-class {

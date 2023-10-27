@@ -2,22 +2,22 @@
   <div class="tags-view-container">
     <scroll-panel>
       <div class="tags-view-wrapper">
-      <!-- 一个个tag view就是router-link -->
-      <router-link
-        class="tags-view-item"
-        :class="{
-          active: isActive(tag)
-        }"
-        v-for="(tag, index) in visitedViews"
-        :key="index"
-        :to="{ path: tag.path, query: tag.query }"
-      >
-        <span>{{ tag.meta.title }}</span>
-        <el-icon class="icon-close" v-if="!isAffix(tag)">
-          <CloseBold @click.prevent.stop="closeSelectedTag(tag)" />
-        </el-icon>
-      </router-link>
-    </div>
+        <!-- 一个个tag view就是router-link -->
+        <router-link
+          class="tags-view-item"
+          :class="{
+            active: isActive(tag)
+          }"
+          v-for="(tag, index) in visitedViews"
+          :key="index"
+          :to="{ path: tag.path, query: tag.query }"
+        >
+          <span>{{ tag.meta.title }}</span>
+          <el-icon class="icon-close" v-if="!isAffix(tag)">
+            <CloseBold @click.prevent.stop="closeSelectedTag(tag)" />
+          </el-icon>
+        </router-link>
+      </div>
     </scroll-panel>
   </div>
 </template>

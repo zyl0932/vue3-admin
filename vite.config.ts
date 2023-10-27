@@ -8,6 +8,7 @@ import Components from "unplugin-vue-components/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 import ElementPlus from "unplugin-element-plus/vite"
 // import { createSvgImportPlugin, ElementPlusResolve } from "unplugin-element-plus/vite"
+import DefineOptions from "unplugin-vue-define-options/vite"
 export default defineConfig({
   resolve: {
     alias: [
@@ -19,6 +20,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    DefineOptions(),
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
       symbolId: "icon-[name]",

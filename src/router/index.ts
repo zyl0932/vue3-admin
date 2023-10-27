@@ -65,7 +65,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
       {
         path: "Role Management",
         name: "Role Management",
-        component: () => 
+        component: () =>
           import(/* webpackChunkName */ "@/views/system/role.vue"),
         meta: {
           title: "Role Management",
@@ -75,7 +75,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
       {
         path: "user",
         name: "User Management",
-        component: () => 
+        component: () =>
           import(/* webpackChunkName: "user" */ "@/views/system/user.vue"),
         meta: {
           title: "User Management",
@@ -117,7 +117,8 @@ const constantRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: "Dashboard", // 需要配置声明文件否则无提示
           icon: "dashboard",
-          affix: true
+          affix: true,
+          noCache: true, // 缓存
         }
       }
     ]
