@@ -59,7 +59,8 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "menu" */ "@/views/system/menu.vue"),
         meta: {
-          title: "Menu Management"
+          title: "Menu Management",
+          icon: "list"
         }
       },
       {
@@ -118,7 +119,7 @@ const constantRoutes: Array<RouteRecordRaw> = [
           title: "Dashboard", // 需要配置声明文件否则无提示
           icon: "dashboard",
           affix: true,
-          noCache: true, // 缓存
+          noCache: true // 缓存
         }
       }
     ]

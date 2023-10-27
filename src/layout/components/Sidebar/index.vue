@@ -35,7 +35,6 @@ const activeMenu = computed(() => {
   if (meta.activeMenu) {
     return meta.activeMenu
   }
-  console.log(meta.activeMenu)
   return path
 })
 // 渲染路由
