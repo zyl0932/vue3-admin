@@ -5,7 +5,7 @@
     :default-active="activeMenu"
     :background-color="scssVariables.menuBg"
     :text-color="scssVariables.menuText"
-    :active-text-color="scssVariables.menuActiveText"
+    :active-text-color="themeColor"
     :collapse="sidebar.opened"
     :collapse-transition="true"
   >
@@ -26,6 +26,9 @@ import { routes } from "@/router"
 import SidebarItem from "./SidebarItem.vue"
 import { useAppStore } from "@/stores/app"
 import { storeToRefs } from "pinia"
+import { useSettingsStore } from "@/stores/settings"
+const settingsStore = useSettingsStore()
+const themeColor = computed(() => settingsStore.settings.theme)
 const store = useAppStore()
 const { sidebar } = storeToRefs(store)
 const route = useRoute()

@@ -11,9 +11,16 @@
           v-for="(tag, index) in visitedViews"
           :key="index"
           :to="{ path: tag.path, query: tag.query }"
+          :style="{
+            backgroundColor: isActive(tag) ? themeColor: '',
+            borderColor: isActive(tag) ? themeColor : ''
+          }"
         >
-          <el-dropdown trigger="contextmenu" @command="(command:any) => handleTagCommand(command, tag)">
-            <span style="line-height: 26px;">{{ tag.meta.title }}</span>
+          <el-dropdown
+            trigger="contextmenu"
+            @command="(command: any) => handleTagCommand(command, tag)"
+          >
+            <span style="line-height: 26px">{{ tag.meta.title }}</span>
             <!-- affix固定的路由tag是无法删除的 -->
             <span
               v-if="!isAffix(tag)"
@@ -24,7 +31,11 @@
               <el-dropdown-menu>
                 <el-dropdown-item command="all">关闭所有</el-dropdown-item>
                 <el-dropdown-item command="other">关闭其他</el-dropdown-item>
-                <el-dropdown-item command="self" v-if="!tag.meta || !tag.meta.affix">关闭</el-dropdown-item>
+                <el-dropdown-item
+                  command="self"
+                  v-if="!tag.meta || !tag.meta.affix"
+                  >关闭</el-dropdown-item
+                >
                 <el-dropdown-item command="refresh">刷新</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -44,6 +55,7 @@ import { RouteLocationNormalized, RouteRecordRaw } from "vue-router"
 import { CloseBold } from "@element-plus/icons-vue"
 import path from "path-browserify"
 import { routes } from "@/router"
+import { useSettingsStore } from "@/stores/settings"
 const store = useTagsView()
 const { visitedViews } = storeToRefs(store)
 const route = useRoute()
@@ -73,7 +85,7 @@ const closeSelectedTag = (view: RouteLocationNormalized) => {
   store.delView(view)
   // 如果移除的view是当前选中状态view，就让删除后的集合中中最后一个tag view为选中态
   if (isActive(view)) {
-    toLastView(visitedViews.value, view);
+    toLastView(visitedViews.value, view)
   }
 }
 const router = useRouter()
@@ -82,7 +94,7 @@ const toLastView = (
   view: RouteLocationNormalized
 ) => {
   // 得到集合中最后一个项tag view 可能没有
-  const lastView = visitedViews[visitedViews.length - 1];
+  const lastView = visitedViews[visitedViews.length - 1]
   if (lastView) {
     router.push(lastView.path)
   } else {
@@ -161,21 +173,24 @@ const refreshSelectedTag = async (view: RouteLocationNormalized) => {
   // 刷新前 将该路由名称从缓存列表中移除
   store.delCachedView(view)
   // router.push(view.path) // 无法刷新页面，因为页面没有任何变化
-  router.push("/redirect"+view.path) // 跳转重定向路由
+  router.push("/redirect" + view.path) // 跳转重定向路由
 }
 const handleCloseAllTag = (view: RouteLocationNormalized) => {
   // 对于是affix的tag是不会被删除的
-  store.delAllView();
+  store.delAllView()
   // 关闭所有后，就让切换到剩下affix中最后一个tag
   toLastView(visitedViews.value, view)
 }
 const handleCloseOtherTag = (view: RouteLocationNormalized) => {
-  store.delOthersViews(view);
+  store.delOthersViews(view)
   if (!isActive(view)) {
     // 删除其他tag后 让该view路由激活
     router.push(view.path)
   }
 }
+// 获取主题色
+const settingStore = useSettingsStore()
+const themeColor = computed(() => settingStore.settings.theme)
 </script>
 <style lang="scss" scoped>
 .tags-view-container {

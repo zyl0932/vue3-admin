@@ -30,11 +30,11 @@ const sizeOptions = ref([
     value: "default"
   },
   {
-    label: "large",
+    label: "Large",
     value: "large"
   },
   {
-    label: "small",
+    label: "Small",
     value: "small"
   }
 ])
